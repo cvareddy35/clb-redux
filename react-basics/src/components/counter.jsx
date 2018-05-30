@@ -9,7 +9,6 @@ class Counter extends Component {
     super(props);
     this.state = {
       count: this.props.initialCount, 
-
     }
   }
   

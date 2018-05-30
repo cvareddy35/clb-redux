@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import TodoItem from './components/todos/todo-item';
 import Counter from './components/counter';
+import TodosList from './components/todos/todos-list';
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="ui container">
         <h1>React Training</h1>
-        <TodoItem />
-        <Counter initialCount={567} />
+        <TodosList />
+        {/* <Counter initialCount={567} /> */}
       </div>
     );
   }

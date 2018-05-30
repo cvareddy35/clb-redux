@@ -4,8 +4,8 @@ export class TodoItem extends Component {
   
   render() {
     return (
-      <h3>Todo Item</h3>
-    );
+      <h3></h3>
+    )
   }
 }
 
