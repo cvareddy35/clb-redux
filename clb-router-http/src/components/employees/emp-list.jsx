@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { mockEmployees } from './emp-mock-data';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export class EmpList extends Component {
 
@@ -7,13 +9,21 @@ export class EmpList extends Component {
     super(props);
     
     this.state = {
-      employees: mockEmployees
+      employees: []
     };
  
   }
 
-  showDetails = (selectedEmployee) => {
-    console.log(selectedEmployee);
+  componentDidMount = () => {
+    axios.get('http://localhost:8080/api/employees')
+      .then((res) => {
+        this.setState({
+          employees: res.data
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
@@ -27,10 +37,10 @@ export class EmpList extends Component {
                                   <td>{e.lastName}</td>
                                   <td>{e.city}</td>
                                   <td>
-                                    <button className="ui basic blue button"
-                                            onClick={() => this.showDetails(e)}>
+                                    <Link className="ui basic blue button"
+                                          to={`/employees/${e.id}`}>
                                       Show Details
-                                    </button>
+                                    </Link>
                                   </td>
                                 </tr>
                               )

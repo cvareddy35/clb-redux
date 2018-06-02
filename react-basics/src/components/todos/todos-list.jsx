@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TodoItem from './todo-item';
-import TodoForm from './todo-form';
 
 class TodosList extends Component {
   state = {
@@ -18,26 +17,28 @@ class TodosList extends Component {
         text: 'Learn djembes'
       }
     ],
-    latestId: 4
+    newTodoText: ''
   }
 
-  addTodo = (newTodoText) => {
-
+  handleSubmit = (evt) => {
+    evt.preventDefault();
+    console.log('Form submission: ', this.state.newTodoText);
     let newTodo = {};
-    newTodo.id = this.state.latestId;
-    newTodo.text = newTodoText;
+    newTodo.id = this.state.todos.length + 1;
+    newTodo.text = this.state.newTodoText;
     
     let newList = [...this.state.todos, newTodo];
     this.setState({
       todos: newList,
-      latestId: this.state.latestId + 1
+      newTodoText: ''
     });
   }
 
-  deleteTodo = (id) => {
-    console.log('Delete method calle with id : ', id);
-    let todos = this.state.todos.filter(todo => todo.id !== id);
-    this.setState({ todos });
+  handleChange = (evt) => {
+    //console.log('value changing', evt.target.value);
+    this.setState({
+      newTodoText: evt.target.value
+    })
   }
 
   render() {
@@ -46,17 +47,16 @@ class TodosList extends Component {
         <h3>
           List of Todos
         </h3>
-        
-        <TodoForm addTodo={this.addTodo} />
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" 
+                 value={this.state.newTodoText}
+                 onChange={this.handleChange} />
 
+          <button>Add Todo</button>
+        </form>
         <ul className="ui list">
           {/* {this.state.todos.map(todo => <li key={todo.id}>{todo.id} - {todo.text}</li>)} */}
-          {this.state.todos.map(todo => <TodoItem 
-                                          key={todo.id} 
-                                          todo={todo} 
-                                          deleteTodo={this.deleteTodo}
-                                        />
-                                )}
+          {this.state.todos.map(todo => <TodoItem key={todo.id} todo={todo} />)}
         
         </ul>
         
