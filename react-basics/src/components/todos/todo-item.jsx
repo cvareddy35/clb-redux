@@ -2,11 +2,24 @@ import React, { Component } from 'react';
 
 export class TodoItem extends Component {
   
+  handleDelete = () => {
+    this.props.deleteTodo(this.props.todo.id);
+  }
+
   render() {
+
     return (
-      <h3></h3>
-    )
+      <div>
+        <button className="ui red basic button" 
+                onClick={this.handleDelete}>
+          Delete
+        </button>
+        <span>
+          {this.props.todo.id} - { this.props.todo.text }
+        </span>
+      </div>
+    ) 
   }
 }
 
-export default TodoItem;
+export default TodoItem; 
