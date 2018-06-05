@@ -38,5 +38,9 @@
   "employee": {
     "dataSource": "db",
     "public": true
+  },
+  "job": {
+    "dataSource": "db",
+    "public": true
   }
 }
