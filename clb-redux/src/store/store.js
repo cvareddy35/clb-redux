@@ -1,23 +1,37 @@
 import { createStore } from 'redux';
 
 const initialState = {
-  counter: 1890
+  count: 909,
+  todos: [
+    {
+      id: 1,
+      text: 'Learn React'
+    },
+    {
+      id: 2,
+      text: 'Learn Redux'
+    },
+    {
+      id: 3,
+      text: 'Go to Goa'
+    }
+  ]
 }
 
-const rootReducer = (state = initialState, action) => {
+const counterReducer = (state = initialState, action) => {
   //console.log('State is ', state);
   //console.log('Action is', action.type);
   switch(action.type) {
     case 'INC':
-      return {...state, counter: state.counter + action.payload};
+      return {...state, count: state.count + action.payload};
     case 'DEC':
-      return {...state, counter: state.counter - action.payload};
+      return {...state, count: state.count - action.payload};
     default:
       return state;
   }
 }
 
-const store = createStore(rootReducer);
+const store = createStore(counterReducer);
 export default store;
 
 // store.subscribe(result => {
