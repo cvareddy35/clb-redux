@@ -12,7 +12,7 @@ class TodosList extends Component {
   
   deleteTodo(id) {
     console.log('In the parent', id);
-    this.props.onDeleteTodo(id);
+    this.props.onDeleteTodo(id, 'Parent data');
   }
 
   render() {
@@ -26,7 +26,7 @@ class TodosList extends Component {
               this.props.todos.map(todo => <TodoItem 
                                               key={todo.id} 
                                               todo={todo} 
-                                              deleteTodo={this.deleteTodo} />)
+                                              deleteTodo={this.props.onDeleteTodo}/>)
             }
           </div>
         </div>
@@ -44,6 +44,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onDeleteTodo : (id) => {
+      console.log('Id : ', id);
       dispatch({ type: 'DELETE_TODO', id})
     }
   }
