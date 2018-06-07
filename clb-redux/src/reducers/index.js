@@ -4,5 +4,6 @@ import { todosReducer } from '../reducers/todos-reducer';
 
 const rootReducer = combineReducers({ count: counterReducer, 
                                       todos: todosReducer });
+                          
 
 export default rootReducer;

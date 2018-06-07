@@ -43,13 +43,13 @@ class TodoForm extends Component {
   }
 }
 
-const mapDispathToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    addTodo: (todoText) => {
-      console.log('Add is getting called', todoText);
-      dispatch({ type: 'ADD_TODO', payload: todoText})
+    addTodo: (text) => {
+      console.log('Add is getting called', text);
+      dispatch({ type: 'ADD_TODO', text})
     }
   }
 }
 
-export default connect(null, mapDispathToProps)(TodoForm);
+export default connect(null, mapDispatchToProps)(TodoForm);

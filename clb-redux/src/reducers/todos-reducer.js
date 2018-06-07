@@ -21,8 +21,10 @@ let latestId = 3;
 export function todosReducer(state = initialState, action) {
   switch(action.type) {
     case 'ADD_TODO':
-      const newTodo = { id: ++latestId, text: action.payload, completed: false };
+      const newTodo = { id: ++latestId, text: action.text, completed: false };
       return [...state, newTodo];
+    case 'DELETE_TODO':
+      return state.filter(todo => todo.id !== action.id);
     default:
       return state;
   }
